@@ -9,7 +9,7 @@ python:
 install:
     - pip install --user --upgrade pip
     - pip install --user tox
-after_install:
+before_script:
     - pip --version
     - tox --version
 script: tox -e py2,py3,travis --parallel auto
