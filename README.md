@@ -1,4 +1,6 @@
 [![BuildStatus](https://travis-ci.org/theodore86/TestVM.svg?branch=master)](https://travis-ci.org/theodore86/TestVM)
+[![GitHub Download Count](https://img.shields.io/github/downloads/theodore86/TestVM/total)](https://img.shields.io/github/downloads/theodore86/TestVM/total)
+[![GitHub Issues Open](https://img.shields.io/github/issues-raw/theodore86/TestVM)](https://img.shields.io/github/issues-raw/theodore86/TestVM)
 
 # Vagrant Box
 Virtual machine for testing and developing using Python 2.7.x and 3.6.x.
