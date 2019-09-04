@@ -22,7 +22,7 @@
 
 - Add python3 as basepython in ``tox.ini``.
 - Add ``log-file`` option in ``.pip.conf``.
-- Add ``[testenv:jenkins]`` section in ``tox.ini``.
+- Add ``[testenv:travis]`` section in ``tox.ini``.
 - Add ``lsyncd`` (rsync) tool.
   - Update ``vagrant.yaml`` - Add lsyncd file provisioner.
   - Add ``lsyncd`` lua configuration file.

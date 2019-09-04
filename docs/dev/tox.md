@@ -142,13 +142,14 @@ Just type:
 tox -e docs
 ```
 
-- ``[testenv:jenkins]``
+- ``[testenv:travis]``
 
-Jenkins test environment **should not** be executed manually. It will be triggered whenever an commit is pushed to the remote repository. After each commit (except of ``[ci-skip]`` in commit message) Jenkins will perform code validation and will permantly generate and serve the project documentation.
+Travis test environment **should not** be executed manually. It will be
+triggered whenever an commit is pushed to the remote repository. After each commit (except of ``[ci-skip]`` in commit message) Travis will perform code validation and will permantly generate and serve the project documentation.
 
 In brief this environment is being used for [CI/CD](https://www.infoworld.com/article/3271126/what-is-cicd-continuous-integration-and-continuous-delivery-explained.html) purposes.<br>
 
 Just type:
 ```console
-tox -e jenkins
+tox -e travis
 ```

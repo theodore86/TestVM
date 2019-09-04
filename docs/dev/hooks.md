@@ -39,7 +39,8 @@ tox -e lint
 ```
 tox will create the virtual environment, install the pre-commit package and pre-commit will fire up the configured hooks/plugins in the ``.pre-commit-config.yaml``.
 
-Moreover, integration of the pre-commit framework inside ``tox`` simplifies the **CI/CD pipeline**, it is a one-shot operation whenever someone from the team is **pushing** code to the remote repository. In such case Jenkins will build and execute the pre-commit framework.
+Moreover, integration of the pre-commit framework inside ``tox`` simplifies the
+**CI/CD pipeline**, it is a one-shot operation whenever someone from the team is **pushing** code to the remote repository. In such case Travis will build and execute the pre-commit framework.
 
 # Add a new pre-commit plugin
 
