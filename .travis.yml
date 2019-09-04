@@ -9,8 +9,10 @@ python:
 install:
     - pip install --user --upgrade pip
     - pip install --user tox
+after_install:
+    - pip --version
     - tox --version
-script: tox -e travis
+script: tox -e py2,py3,travis --parallel auto
 notifications:
     email:
         on_success: change

@@ -1,3 +1,5 @@
+[![BuildStatus](https://travis-ci.org/theodore86/TestVM.svg?branch=master)](https://travis-ci.org/theodore86/TestVM)
+
 # Vagrant Box
 Virtual machine for testing and developing using Python 2.7.x and 3.6.x.
 Fully managed and provisioned using shell scripts.
