@@ -73,7 +73,7 @@ get_extracted_dir_name(){
 source_code_exists() {
 
     local _return=0
-    ! [[ -f ${SOUCE_CODE_FP} && -d ${SOURCE_CODE_FP} ]] || { local _return=1; }
+    ! [[ -f ${SOURCE_CODE_FP} && -d ${SOURCE_CODE_FP} ]] || { local _return=1; }
     return $_return
 }
 
@@ -214,7 +214,6 @@ shift $((OPTIND-1))
 
 SOURCE_CODE_FP=$(readlink -f ${SOURCE_CODE})
 PREFIX="${OUTPUT_DIR}/wireshark_e2e"
-TSHARK_BIN="${PREFIX}/bin/tshark"
 
 case $ACTION in
    "compile")

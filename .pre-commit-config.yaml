@@ -42,6 +42,15 @@ repos:
             language: python
             args: ['-s', '-c', '.yamllint']
             files: \.(yaml|yml)$
+    - repo: git://github.com/detailyang/pre-commit-shell
+      rev: v1.0.6
+      hooks:
+          - id: shell-lint
+            name: Shell script Linter
+            description: Lint for Shell scripts
+            language: script
+            args: ['-S', 'error']
+            files: \.sh$
     - repo: local
       hooks:
           - id: vagrantlint

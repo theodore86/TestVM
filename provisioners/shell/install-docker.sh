@@ -31,7 +31,7 @@ apt-get install -y \
 
 # Add vagrant user to docker group - avoid typing sudo
 PERMISSIONS="$1"
-if [[ ! -z $PERMISSIONS ]]; then
+if [[ -n $PERMISSIONS ]]; then
     if [[ $PERMISSIONS == "permissions" ]]; then
         echo "INFO>>> Adding vagrant user to docker group"
         usermod -a -G docker vagrant
