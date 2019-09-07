@@ -28,3 +28,12 @@ add-apt-repository \
 # Install the latest version of Docker engine - Community
 apt-get install -y \
     docker-ce
+
+# Add vagrant user to docker group - avoid typing sudo
+PERMISSIONS="$1"
+if [[ ! -z $PERMISSIONS ]]; then
+    if [[ $PERMISSIONS == "permissions" ]]; then
+        echo "INFO>>> Adding vagrant user to docker group"
+        usermod -a -G docker vagrant
+    fi
+fi

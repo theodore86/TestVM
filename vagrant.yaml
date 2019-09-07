@@ -153,6 +153,7 @@
                   :type: *shell
                   :path: [*provisioners, *shell, 'install-docker.sh']
                   :binary: *true
+                  :args: ['permissions']
                   :run: null
             - :name: 'ctshark'
               :options:
