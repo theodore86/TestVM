@@ -1,3 +1,43 @@
+## [1.1.5] - 2019-09-16
+### Changed
+- Update README.
+- Update project documentation.
+  - Cmder guide.
+  - Pre-commit hooks.
+  - Vagrant Workflow.
+- Update ``vagrant.yaml``.
+  - Proxy settings.
+  - SSH settings.
+  - Introduce new key: ``is_supported`` for HTTPs proxy handling.
+  - Provisioning of docker package.
+- Update ``Vagrantfile``.
+  - SSH handling.
+  - Conditional execution of ``vagrant-hostupdater`` plugin.
+- Update ``vagrant-proxyconf`` plugin version to ``2.0.6``.
+- Update ``vagrant-vbguest`` plugin version to ``0.19.0``.
+- Update ``vagrant-proxy.rb``.
+  - HTTPs scheme for proxy settings.
+- Update ``tox.ini``.
+  - ``recreate = true`` option for ``[travis]`` section.
+  - ``more-itertools==5.0.0`` for ``[py2]`` section.
+  - ``recreate = true`` option for ``[py2]`` and ``[py3]`` sections.
+- Update ``install-docker.sh``.
+  - Add vagrant user to docker group.
+- Update ``.pre-commit-config.yaml``.
+  - Add ``shell-lint`` hook.
+- Update ``chocolatey.config``.
+  - Add ``shellcheck`` package.
+
+### Fixed
+- Fix relative path for ``sys.rb`` in ``vagrant-vb.rb`` module.
+- Fix shell linter issues.
+
+### Added
+- Add ``lib/plugins`` subfolder for vagrant plugins.
+- Add ``lib/providers`` subfolder for vagrant providers.
+- Add ``vagrant-hostupdater.rb`` module.
+- Add shell script provisioner for docker installation.
+
 ## [1.1.4] - 2019-07-12
 ### Changed
 

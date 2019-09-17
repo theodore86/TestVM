@@ -19,6 +19,7 @@ nav:
                 - 'Synced Folders': 'vagrant/shared.md'
                 - 'Plugins': 'vagrant/plugins.md'
                 - 'Debugging': 'vagrant/debugging.md'
+                - 'Workflow': 'vagrant/workflow.md'
           - 'Cmder': 'cmder/guide.md'
           - 'Chocolatey': 'chocolatey/guide.md'
     - Developer Guide:
