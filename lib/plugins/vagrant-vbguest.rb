@@ -36,7 +36,7 @@ module VbGuest
         end
 
         def config_iso(options={})
-            options.each do |key, value|
+            options.each_key do |key|
                 eval "config.vbguest.iso_#{key} = options[key]"
             end
         end
