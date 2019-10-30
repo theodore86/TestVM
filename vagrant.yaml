@@ -43,6 +43,16 @@
     :ssh:
         :forward_agent: true
         :forward_x11: true
+    # https://github.com/dotless-de/vagrant-vbguest
+    :vbguest:
+        :iso:
+            :path: 'auto'
+            :mount_point: '/mnt'
+            :upload_path: '/tmp'
+        :no_remote: false
+        :no_install: false
+        :auto_update: false
+        :auto_reboot: true
     # https://github.com/tmatilai/vagrant-proxyconf
     :proxy:
         :http:

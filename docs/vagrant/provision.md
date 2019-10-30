@@ -158,11 +158,11 @@ The File provisioner allows you to upload a file or directory from the host mach
     - ``:type:`` - The type of the provisioner, in this case is the **file**.
     - ``:source:`` - The local path of the file or directory to be uploaded.
     - ``:destination:`` -  The remote path on the guest machine where the source will be uploaded to.
-    - ``:run:`` - Run Once, Always or Never - By default always.
+    - ``:run:`` - Run Once, Always or Never - By default: **always**.
 
 **Always** run file provisioners:
 
-- ``vimrc`` - VIM editor user configuration file.
-- ``gitconfig`` - GIT user configuration file.
-- ``ipython`` - iPython interactive interpreter configuration file.
-- ``lsyncd`` -  Lsyncd deamon configuration file. Synchronizes local directories with remote targets.
+- [vimrc](https://vimconfig.com/) - VIM editor user configuration file.
+- [gitconfig](https://git-scm.com/docs/git-config) - GIT user configuration file.
+- [ipython](https://ipython.org/ipython-doc/stable/config/index.html) - iPython interactive interpreter configuration file.
+- [lsyncd](https://axkibe.github.io/lsyncd) -  Lsyncd daemon configuration file. Synchronizes local directories with remote targets.

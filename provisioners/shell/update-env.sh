@@ -8,4 +8,4 @@ DEBIAN_FRONTEND=noninteractive apt-get -y -o DPkg::options::="--force-confdef" -
 apt-get -y dist-upgrade
 apt-get autoclean
 apt-get clean
-apt-get autoremove
+apt-get -y autoremove

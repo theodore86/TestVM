@@ -5,6 +5,7 @@ require 'yaml'
 require_relative 'lib/vagrant-host'
 require_relative 'lib/plugins/vagrant-proxy'
 require_relative 'lib/plugins/vagrant-hostupdater'
+require_relative 'lib/plugins/vagrant-vbguest'
 require_relative 'lib/providers/vagrant-vb'
 
 
@@ -26,6 +27,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #-- HostUpdater Settings --#
     if Vagrant.has_plugin?("vagrant-hostupdater")
         HostUpdater.conf(config, HOSTSUPDATER)
+    end
+
+    #-- VirtualBox Guest Additions --#
+    if Vagrant.has_plugin?('vagrant-vbguest')
+        VbGuest.conf(config, HOST)
     end
 
     #-- Guest Settings --#
