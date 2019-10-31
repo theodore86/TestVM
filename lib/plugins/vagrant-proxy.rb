@@ -11,9 +11,9 @@ module Proxy
     @@config = nil
 
     def conf(config, host)
+	set_config(config)
         if host.key?(:proxy)
             proxy = host[:proxy]
-            set_config(config)
             set_http_url(proxy)
             set_https_url(proxy)
             system_wide(proxy)
@@ -29,9 +29,9 @@ module Proxy
         @@config
     end
 
-    def set_http_url(value)
+    def set_http_url(options={})
         url = 'http://'
-        http = value[:http]
+        http = options[:http]
         if http.key?(:auth)
             token = "#{http[:user]}:#{http[:pass]}@"
             url = "#{url}#{token}"
@@ -43,8 +43,8 @@ module Proxy
         @@http_url
     end
 
-    def set_https_url(value)
-        https = value[:https]
+    def set_https_url(options={})
+        https = options[:https]
         url_s = https[:is_supported] ? 'https://' : 'http://'
         if https.key?(:auth)
             token = "#{https[:user]}:#{https[:pass]}@"
@@ -59,7 +59,7 @@ module Proxy
 
     private
 
-        def system_wide(proxy)
+        def system_wide(proxy={})
             sys = proxy[:system]
             config.proxy.enabled = sys[:enabled]
             if sys[:enabled]
@@ -69,7 +69,7 @@ module Proxy
             end
         end
 
-        def applications(proxy)
+        def applications(proxy={})
             sys = proxy[:system]
             applications = sys[:applications]
             config.proxy.enabled = applications

@@ -8,7 +8,7 @@ module HostUpdater
 
     @@config = nil
 
-    def conf(config, updater)
+    def conf(config, updater={})
         set_config(config)
         update(updater)
     end
@@ -23,7 +23,7 @@ module HostUpdater
 
     private
 
-        def update(updater)
+        def update(updater={})
             config.hostupdater.aliases = updater[:aliases]
             config.hostupdater.remove_on_suspend = updater[:remove_on_suspend]
         end
