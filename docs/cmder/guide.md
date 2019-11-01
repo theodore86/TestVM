@@ -27,7 +27,15 @@ In brief:
 - ``user_aliases.cmd`` : User specific aliases in cmd.
 - ``user_profile.{cmd|sh|ps1}`` : User specific startup commands.
 
-Before we start using the Cmder we need to automatically start the ssh-agent at startup. Uncomment the following line in the ``user_profiles.cmd``:
+Before we start using the Cmder we need to **remove** the Windows *OpenSSH* version from the system ``PATH`` (Windows comes with their own version of OpenSSH):
+
+```text
+$ which ssh-agent
+\c\WINDOWS\SYSTEM32\OpenSSH
+```
+
+To automatically start the ssh-agent at startup uncomment the following line in ``user_profiles.cmd``:
+
 
 ```text
 :: uncomment this to have the ssh agent load when cmder starts
