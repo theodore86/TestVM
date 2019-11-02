@@ -6,7 +6,6 @@ REQUIRED_PLUGINS = {
     'vagrant-vbguest' => '>= 0.19.0',
     'sahara' => '>= 0.0.17',
     'vagrant-proxyconf' => '>= 2.0.6',
-    'vagrant-host-shell' => '>= 0.0.4',
     'vagrant-hostsupdater' => '>= 1.1.1.160'
 }
 

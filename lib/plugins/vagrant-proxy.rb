@@ -11,7 +11,7 @@ module Proxy
     @@config = nil
 
     def conf(config, host)
-	set_config(config)
+        set_config(config)
         if host.key?(:proxy)
             proxy = host[:proxy]
             set_http_url(proxy)
