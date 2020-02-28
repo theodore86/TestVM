@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 #
 #Purpose: Script for compilation/decompilation of wireshark from source code.
-#[Note]: Supported on Ubuntu/CentOS Linux distros
+#[Note]:
+#    Supported on Ubuntu/CentOS Linux distros
+#    Supported wireshark versions: 2.x
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 INFO="\033[0;32m"
@@ -13,13 +15,13 @@ PACMAN=""  #name of the package manager
 error() {
 
     local exit_status=85
-    printf "${FAIL}ERROR>>>${ENDC} %s\n" "$(basename $0) : ${1} " 1>&2
+    printf "${FAIL}ERROR>>>${ENDC} %s\n" "$(basename "$0") : ${1} " 1>&2
     exit $exit_status
 }
 
 info() {
 
-    printf "${INFO}INFO>>>${ENDC} %s\n" "$(basename $0): $1"
+    printf "${INFO}INFO>>>${ENDC} %s\n" "$(basename "$0"): $1"
 }
 
 yum_s() {
@@ -59,21 +61,23 @@ install_dependencies() {
 
     local _return=0
     set_dependencies
-    ${PACMAN}_s $DEPS || { local _return=1; }
+    "${PACMAN}"_s ${DEPS} || { local _return=1; }
     return $_return
 }
 
 get_extracted_dir_name(){
 
     local tarball=$1
-    echo $(tar -tzf $tarball | head -1 | cut -f1 -d"/") \
-        || error "Fail to get extracted directory name from $tarball"
+    local folder_name=""
+    folder_name="$(tar -tzf $tarball | head -1 | cut -f1 -d"/")"
+    [[ -z "${folder_name}" ]] && error "Fail to get extracted directory name from $tarball"
+    echo "${folder_name}"
 }
 
 source_code_exists() {
 
     local _return=0
-    ! [[ -f ${SOURCE_CODE_FP} && -d ${SOURCE_CODE_FP} ]] || { local _return=1; }
+    ! [[ -f "${SOURCE_CODE_FP}" && -d "${SOURCE_CODE_FP}" ]] || { local _return=1; }
     return $_return
 }
 
@@ -100,7 +104,7 @@ get_tshark_folder() {
 
     local folder="''"
     if "$TAR"; then
-        folder="${OUTPUT_DIR}/$(get_extracted_dir_name ${SOURCE_CODE_FP})"
+        folder="${OUTPUT_DIR}/$(get_extracted_dir_name "${SOURCE_CODE_FP}")"
     else
         folder="${SOURCE_CODE}"
     fi
@@ -112,7 +116,7 @@ compile() {
     #compile with parameters
     local prefix="${PREFIX}"
     [[ "$*" == *prefix* ]] && { local prefix=""; }
-    local parameters="$@"
+    local parameters="$*"
     local cmd="./configure $parameters $prefix"
     $cmd
 }
@@ -120,16 +124,17 @@ compile() {
 compile_tshark() {
 
     #Start the actual tshark compilation
-    local tshark_folder=$(get_tshark_folder)
+    local tshark_folder
+    tshark_folder=$(get_tshark_folder)
     if [[ "$TAR" == true ]]; then
         info "Extracting and compiling Tshark..."
-        if [[ ${CURRENT_DIR} != ${OUTPUT_DIR} ]]; then
-            cp -f ${SOURCE_CODE_FP} ${OUTPUT_DIR} || error "Fail to copy ${SOURCE_CODE_FP} under ${OUTPUT_DIR}"
+        if [[ ${CURRENT_DIR} != "${OUTPUT_DIR}" ]]; then
+            cp -f ${SOURCE_CODE_FP} "${OUTPUT_DIR}" || error "Fail to copy ${SOURCE_CODE_FP} under ${OUTPUT_DIR}"
         fi
-        ! extract_tarball ${SOURCE_CODE} ${OUTPUT_DIR} && error "Fail to extract ${SOURCE_CODE}"
+        ! extract_tarball ${SOURCE_CODE} "${OUTPUT_DIR}" && error "Fail to extract ${SOURCE_CODE}"
     fi
     mkdir -p "${PREFIX}" || error "Fail to setup ${PREFIX} dir"
-    cd ${tshark_folder} || error "Fail to 'cd' in ${tshark_folder}"
+    cd "${tshark_folder}" || error "Fail to 'cd' in ${tshark_folder}"
     ./autogen.sh || error "Fail to autogen Tshark.."
     compile "--prefix=${PREFIX}" \
             '--enable-tshark' \
@@ -154,15 +159,16 @@ compile_tshark() {
 remove_tshark() {
 
     #cleanup the compiled version of Tshark
-    local tshark_folder=$(get_tshark_folder)
+    local tshark_folder
+    tshark_folder="$(get_tshark_folder)"
     [[ ! -d ${tshark_folder} ]] \
         && error "${tshark_folder} is missing, bailing out"
-    cd ${tshark_folder} || error "Fail to 'cd' in ${tshark_folder}"
+    cd "${tshark_folder}" || error "Fail to 'cd' in ${tshark_folder}"
     #display the steps the software would take to install itself
     make -n install > /dev/null || error "Not an compiled software"
     make uninstall || error "Fail to uninstall Tshark"
     make clean &>/dev/null
-    cd .. && rm -rf ${tshark_folder}
+    cd .. && rm -rf "${tshark_folder}"
     rm -rf "${PREFIX}"
     info "Tshark has been uninstalled successfully"
 }
@@ -212,7 +218,7 @@ done
 [[ $OPTIND -eq 1 ]] && help
 shift $((OPTIND-1))
 
-SOURCE_CODE_FP=$(readlink -f ${SOURCE_CODE})
+SOURCE_CODE_FP=$(readlink -f "${SOURCE_CODE}")
 PREFIX="${OUTPUT_DIR}/wireshark_e2e"
 
 case $ACTION in

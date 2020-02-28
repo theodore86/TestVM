@@ -49,7 +49,7 @@ repos:
             name: Shell script Linter
             description: Lint for Shell scripts
             language: script
-            args: ['-S', 'error']
+            args: ['-e', 'SC2086']
             files: \.sh$
     - repo: local
       hooks:
