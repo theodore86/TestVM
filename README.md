@@ -3,8 +3,7 @@
 [![GitHub Issues Open](https://img.shields.io/github/issues-raw/theodore86/TestVM)](https://img.shields.io/github/issues-raw/theodore86/TestVM)
 
 # Vagrant Box
-Virtual machine for testing and developing using Python 2.7.x and 3.6.x.
-Fully managed and provisioned using shell scripts.
+Virtual machine for testing and developing purposes. Fully managed and provisioned using shell scripts.
 
 ## What is Vagrant
 [Vagrant](https://www.vagrantup.com/docs/index.html) is an tool for building and managing virtual machine environments in an sigle workflow.

@@ -9,7 +9,6 @@ addons:
     apt:
         update: true
 install:
-    - sudo apt-get install -y shellcheck
     - pip install --user --upgrade pip
     - pip install --user tox
 before_script:
